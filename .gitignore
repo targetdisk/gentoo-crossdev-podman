@@ -1,0 +1,6 @@
+targets
+Dockerfile
+
+*.swo
+*.swn
+*.swp
