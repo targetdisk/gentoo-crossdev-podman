@@ -1,0 +1,11 @@
+FROM gentoo/stage3:latest
+RUN emerge-webrsync
+RUN emerge sys-devel/crossdev
+RUN mkdir -p /etc/portage/repos.conf
+COPY crossdev.conf /etc/portage/repos.conf/
+RUN mkdir -p /var/db/repos/crossdev/{profiles,metadata}
+RUN echo 'crossdev' > /var/db/repos/crossdev/profiles/repo_name
+RUN echo 'masters = gentoo' > /var/db/repos/crossdev/metadata/layout.conf
+RUN chown -R portage:portage /var/db/repos/crossdev
+RUN crossdev --stable -t [%TARGET%] && \
+    [%TARGET%]-emerge -uv --keep-going @system
