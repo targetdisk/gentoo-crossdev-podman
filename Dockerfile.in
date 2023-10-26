@@ -1,6 +1,6 @@
 FROM gentoo/stage3:latest
 RUN emerge-webrsync
-RUN emerge sys-devel/crossdev
+RUN emerge sys-devel/crossdev dev-util/cmake
 RUN mkdir -p /etc/portage/repos.conf
 COPY crossdev.conf /etc/portage/repos.conf/
 RUN mkdir -p /var/db/repos/crossdev/{profiles,metadata}
